@@ -1,0 +1,21 @@
+# dependencies
+node_modules
+
+# build output
+dist
+dist-ssr
+
+# env
+.env
+.env.local
+
+# logs
+npm-debug.log*
+*.log
+
+# editor/OS
+.DS_Store
+*.local
+
+# source design files (large binaries, not part of the build)
+*.fig

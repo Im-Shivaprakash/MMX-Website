@@ -1,0 +1,41 @@
+.section {
+  background:
+    linear-gradient(180deg, rgba(16, 16, 16, 0.55) 0%, rgba(16, 16, 16, 0.92) 100%),
+    radial-gradient(circle at 30% 20%, rgba(230, 188, 50, 0.25), transparent 55%),
+    linear-gradient(135deg, var(--color-charcoal), var(--color-black));
+  color: var(--text-on-dark);
+}
+
+.content {
+  padding-block: var(--space-8);
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: var(--fs-eyebrow);
+  color: var(--text-on-dark-muted);
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: var(--fs-h1);
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+.subtext {
+  color: var(--text-on-dark-muted);
+}
+
+.section a {
+  align-self: flex-start;
+  margin-top: var(--space-2);
+}

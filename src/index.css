@@ -1,0 +1,155 @@
+/* ---------------------------------------------------------------------- */
+/* Design tokens                                                          */
+/* Colors were pixel-sampled from Landing Page.png — treat as a strong    */
+/* starting point, not final-pixel-perfect (see plan doc).                */
+/* ---------------------------------------------------------------------- */
+:root {
+  /* raw palette */
+  --color-black: #101010;
+  --color-charcoal: #1a1a1a;
+  --color-gold-light: #e6bc32;
+  --color-gold-dark: #c3891e;
+  --color-gold: #ddae2c;
+  --color-light-bg: #f5f5f5;
+  --color-white: #ffffff;
+  --color-placeholder-on-light: #9a9a9a;
+  --color-placeholder-on-dark: #e4e4e4;
+  --color-text-dark: #141414;
+  --color-text-muted-dark: #6b6b6b;
+  --color-text-light: #f2f2f2;
+  --color-text-muted-light: #b8b8b8;
+  --color-border-dark: rgba(255, 255, 255, 0.14);
+  --color-border-light: rgba(0, 0, 0, 0.1);
+
+  /* semantic aliases — components only ever reference these */
+  --bg-dark: var(--color-black);
+  --bg-light: var(--color-light-bg);
+  --text-on-dark: var(--color-text-light);
+  --text-on-dark-muted: var(--color-text-muted-light);
+  --text-on-light: var(--color-text-dark);
+  --text-on-light-muted: var(--color-text-muted-dark);
+  --accent: var(--color-gold);
+  --gradient-gold: linear-gradient(135deg, var(--color-gold-light), var(--color-gold-dark));
+
+  /* typography */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --fs-h1: clamp(2.25rem, 4vw + 1rem, 4rem);
+  --fs-h2: clamp(1.75rem, 2vw + 1rem, 2.75rem);
+  --fs-stat: clamp(2rem, 3vw + 1rem, 3.25rem);
+  --fs-eyebrow: 0.8rem;
+
+  /* spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+
+  /* shape */
+  --radius-pill: 999px;
+  --radius-card: 12px;
+  --radius-sm: 6px;
+
+  /* layout */
+  --container-max: 1320px;
+  --container-pad: 20px;
+  --header-height: 104px;
+  --header-height-mobile: 78px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --container-pad: 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --container-pad: 48px;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Reset                                                                   */
+/* ---------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-light);
+  color: var(--text-on-light);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+input {
+  font-family: inherit;
+}
+
+/* every anchor-target section should clear the sticky header */
+section[id] {
+  scroll-margin-top: var(--header-height);
+}
+
+@media (max-width: 899px) {
+  section[id] {
+    scroll-margin-top: var(--header-height-mobile);
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.gold {
+  color: var(--accent);
+}

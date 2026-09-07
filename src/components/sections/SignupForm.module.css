@@ -1,0 +1,134 @@
+.section {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+.inner {
+  padding-block: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.headerRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.heading {
+  font-size: var(--fs-h1);
+}
+
+.script {
+  font-family: 'Poppins', cursive;
+  font-style: italic;
+  color: var(--accent);
+  opacity: 0.85;
+  font-size: 1.1rem;
+}
+
+.subtext {
+  color: var(--text-on-dark-muted);
+  margin-bottom: var(--space-5);
+}
+
+.card {
+  background: var(--color-charcoal);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  margin-bottom: var(--space-4);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.fieldLabel {
+  font-size: 0.85rem;
+  color: var(--text-on-dark-muted);
+}
+
+.field input {
+  background: var(--color-black);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  color: var(--text-on-dark);
+}
+
+.field input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.inputError {
+  border-color: #e05a4e !important;
+}
+
+.fieldError {
+  font-size: 0.75rem;
+  color: #e88a80;
+}
+
+.submit {
+  width: 100%;
+  justify-content: center;
+}
+
+.errorBanner {
+  background: rgba(224, 90, 78, 0.12);
+  border: 1px solid rgba(224, 90, 78, 0.4);
+  color: #e88a80;
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-4);
+}
+
+.successState {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+}
+
+.resetLink {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 0;
+}
+
+.resetLink:hover {
+  text-decoration: underline;
+}

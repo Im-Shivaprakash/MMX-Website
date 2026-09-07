@@ -1,0 +1,73 @@
+.hero {
+  /* height tracks the source photo's ~1440:800 ratio, floored/capped so text
+     stays readable on very short or very tall viewports */
+  min-height: clamp(560px, 56vw, 800px);
+  display: flex;
+  align-items: center;
+  /* --hero-photo (url(...)) is set inline in Hero.jsx from the imported
+     asset; layered under two gradients here so it can live in one CSS file
+     while the image import stays in JS */
+  background-image:
+    linear-gradient(0deg, rgba(10, 10, 10, 0.55) 0%, transparent 42%),
+    linear-gradient(
+      90deg,
+      rgba(10, 10, 10, 0.92) 0%,
+      rgba(10, 10, 10, 0.6) 38%,
+      rgba(10, 10, 10, 0.25) 70%,
+      rgba(10, 10, 10, 0.15) 100%
+    ),
+    var(--hero-photo);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--text-on-dark);
+}
+
+/* Below desktop width the text column spans nearly the full section, so the
+   left-to-right "reveal" gradient above no longer leaves a dark zone the
+   copy can sit in — it needs a uniform wash instead, or text drifts into the
+   brighter (unobscured) right side of the photo and loses contrast. */
+@media (max-width: 899px) {
+  .hero {
+    background-image:
+      linear-gradient(0deg, rgba(10, 10, 10, 0.6) 0%, transparent 45%),
+      linear-gradient(0deg, rgba(10, 10, 10, 0.82), rgba(10, 10, 10, 0.82)),
+      var(--hero-photo);
+  }
+}
+
+.content {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-block: var(--space-8);
+}
+
+.eyebrow {
+  font-family: var(--font-heading);
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: var(--fs-eyebrow);
+}
+
+.heading {
+  font-size: var(--fs-h1);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.subtext {
+  color: var(--text-on-dark-muted);
+  font-size: 1.1rem;
+  max-width: 480px;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}

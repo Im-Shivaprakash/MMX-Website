@@ -1,0 +1,119 @@
+.footer {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+
+.top {
+  display: grid;
+  gap: var(--space-6);
+  padding-block: var(--space-7);
+}
+
+@media (min-width: 900px) {
+  .top {
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.logo {
+  height: 64px;
+  width: auto;
+  /* .brand is a column flexbox, whose default align-items: stretch would
+     otherwise force this img to the column's full width — squashing it —
+     since an explicit height with an "auto" width doesn't opt out of stretch
+     on its own. */
+  align-self: flex-start;
+}
+
+.tagline {
+  color: var(--text-on-dark-muted);
+  font-size: 0.9rem;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  font-family: var(--font-heading);
+}
+
+.links a:hover {
+  color: var(--accent);
+}
+
+@media (min-width: 900px) {
+  .links {
+    justify-content: center;
+  }
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (min-width: 900px) {
+  .meta {
+    align-items: flex-end;
+    text-align: right;
+  }
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-on-dark-muted);
+}
+
+.social {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+@media (min-width: 900px) {
+  .social {
+    align-items: flex-end;
+  }
+}
+
+.socialIcons {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.socialIcons a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.socialIcons a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.bottomBar {
+  border-top: 1px solid var(--color-border-dark);
+  padding-block: var(--space-4);
+}
+
+.bottomBar p {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-on-dark-muted);
+}

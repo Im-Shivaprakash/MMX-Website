@@ -1,0 +1,83 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid transparent;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.solid-gold {
+  background: var(--gradient-gold);
+  color: var(--color-black);
+}
+
+.solid-gold:hover {
+  opacity: 0.92;
+}
+
+.outline-light {
+  background: transparent;
+  border-color: var(--color-border-dark);
+  color: var(--text-on-dark);
+}
+
+.outline-light:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.outline-dark {
+  background: transparent;
+  border-color: rgba(0, 0, 0, 0.25);
+  color: var(--text-on-light);
+}
+
+.outline-dark:hover {
+  border-color: var(--color-text-dark);
+}
+
+.outline-gold {
+  background: transparent;
+  border-color: rgba(221, 174, 44, 0.55);
+  color: var(--accent);
+}
+
+.outline-gold:hover {
+  border-color: var(--accent);
+}
+
+/* Pull a trailing icon-circle in closer to the pill's edge, as in the Hero
+   "Show Reel" reference button. */
+.button:has(.iconCircle) {
+  padding-right: 6px;
+}
+
+.iconCircle {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--gradient-gold);
+  color: var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
