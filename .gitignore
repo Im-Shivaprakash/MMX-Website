@@ -17,5 +17,10 @@ npm-debug.log*
 .DS_Store
 *.local
 
-# source design files (large binaries, not part of the build)
+# source design files (large binaries, not part of the build — the final
+# optimized copies actually used by the site live in src/assets/)
 *.fig
+/Website Files/
+/Page Sections/
+/Landing Page.png
+/Logo.PNG

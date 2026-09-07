@@ -6,12 +6,13 @@ import Button from '../ui/Button.jsx'
 import styles from './SignupForm.module.css'
 
 const emptyValues = Object.fromEntries(signup.fields.map((f) => [f.id, '']))
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-const FORM_ID = import.meta.env.VITE_FORMSPREE_FORM_ID
-if (!FORM_ID && import.meta.env.DEV) {
+const SHEET_WEBAPP_URL = import.meta.env.VITE_SHEETS_WEBAPP_URL
+if (!SHEET_WEBAPP_URL && import.meta.env.DEV) {
   // eslint-disable-next-line no-console
   console.warn(
-    'VITE_FORMSPREE_FORM_ID is not set — copy .env.example to .env and add your Formspree form ID, otherwise the signup form will not be able to submit.',
+    'VITE_SHEETS_WEBAPP_URL is not set — copy .env.example to .env and add your deployed Google Apps Script Web App URL, otherwise the signup form will not be able to submit.',
   )
 }
 
@@ -27,8 +28,11 @@ export default function SignupForm() {
   function validate() {
     const nextErrors = {}
     for (const field of signup.fields) {
-      if (!values[field.id].trim()) {
+      const value = values[field.id].trim()
+      if (field.required && !value) {
         nextErrors[field.id] = 'Required'
+      } else if (field.type === 'email' && value && !EMAIL_PATTERN.test(value)) {
+        nextErrors[field.id] = 'Enter a valid email'
       }
     }
     setErrors(nextErrors)
@@ -47,17 +51,21 @@ export default function SignupForm() {
 
     setStatus('submitting')
     try {
-      const res = await fetch(`https://formspree.io/f/${FORM_ID}`, {
+      // Google Apps Script Web Apps don't send CORS headers on the response,
+      // so a normal fetch() would throw even on a successful write — the
+      // request still reaches the script and appends the row either way.
+      // mode: 'no-cors' avoids that (at the cost of not being able to read
+      // the response), so success here just means the request went out
+      // without a network error, not a confirmed server-side write.
+      await fetch(SHEET_WEBAPP_URL, {
         method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(
           Object.fromEntries(signup.fields.map((f) => [f.name, values[f.id]])),
         ),
       })
-      setStatus(res.ok ? 'success' : 'error')
+      setStatus('success')
     } catch {
       setStatus('error')
     }
@@ -90,14 +98,32 @@ export default function SignupForm() {
                 {signup.fields.map((field) => (
                   <label key={field.id} className={styles.field}>
                     <span className={styles.fieldLabel}>{field.label}</span>
-                    <input
-                      type="text"
-                      placeholder={field.placeholder}
-                      value={values[field.id]}
-                      onChange={(e) => handleChange(field.id, e.target.value)}
-                      aria-invalid={Boolean(errors[field.id])}
-                      className={errors[field.id] ? styles.inputError : undefined}
-                    />
+                    {field.type === 'select' ? (
+                      <select
+                        value={values[field.id]}
+                        onChange={(e) => handleChange(field.id, e.target.value)}
+                        aria-invalid={Boolean(errors[field.id])}
+                        className={errors[field.id] ? styles.inputError : undefined}
+                      >
+                        <option value="" disabled>
+                          {field.placeholder}
+                        </option>
+                        {field.options.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <input
+                        type={field.type}
+                        placeholder={field.placeholder}
+                        value={values[field.id]}
+                        onChange={(e) => handleChange(field.id, e.target.value)}
+                        aria-invalid={Boolean(errors[field.id])}
+                        className={errors[field.id] ? styles.inputError : undefined}
+                      />
+                    )}
                     {errors[field.id] && <span className={styles.fieldError}>{errors[field.id]}</span>}
                   </label>
                 ))}
