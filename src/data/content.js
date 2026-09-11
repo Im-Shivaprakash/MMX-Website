@@ -237,7 +237,7 @@ export const footer = {
   address: 'Ajjanur Road, Gujan’s Atreya Apartment opposite, Vadavalli, Coimbatore 641 046.',
   mapLink: 'https://www.google.com/maps?q=11.01723861694336,76.88504028320312&z=17&hl=en',
   phone: '+91 97918 78197',
-  phoneHref: 'tel:+919791878197',
+  phoneHref: 'tel:+919500392397',
   email: 'mmxdancestudio26@gmail.com',
   socialLabel: 'Follow us on',
   socials: [
