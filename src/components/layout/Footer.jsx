@@ -1,7 +1,7 @@
 import logo from '../../assets/logo.png'
 import { navLinks, footer } from '../../data/content.js'
 import Container from '../ui/Container.jsx'
-import { FiMapPin, FaFacebookF, FaInstagram, FaYoutube } from '../ui/IconIndex.js'
+import { FiMapPin, FiPhone, FiMail, FaFacebookF, FaInstagram, FaYoutube } from '../ui/IconIndex.js'
 import styles from './Footer.module.css'
 
 const socialIcons = {
@@ -28,9 +28,20 @@ export default function Footer() {
         </ul>
 
         <div className={styles.meta}>
-          <p className={styles.location}>
-            <FiMapPin aria-hidden /> {footer.location}
-          </p>
+          <a
+            href={footer.mapLink}
+            target="_blank"
+            rel="noreferrer"
+            className={styles.location}
+          >
+            <FiMapPin aria-hidden /> <span>{footer.address}</span>
+          </a>
+          <a href={footer.phoneHref} className={styles.contactLine}>
+            <FiPhone aria-hidden /> {footer.phone}
+          </a>
+          <a href={`mailto:${footer.email}`} className={styles.contactLine}>
+            <FiMail aria-hidden /> {footer.email}
+          </a>
           <div className={styles.social}>
             <span>{footer.socialLabel}</span>
             <div className={styles.socialIcons}>

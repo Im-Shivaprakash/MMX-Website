@@ -10,6 +10,8 @@ export {
   FiX,
   FiArrowRight,
   FiUser,
+  FiPhone,
+  FiMail,
 } from 'react-icons/fi'
 
 export {
