@@ -34,3 +34,19 @@ to the browser, so the site can't actually read a success/failure response
 from it — it just assumes success once the request goes out without a
 network error. If you want to confirm it's working, submit the form once
 and check the Sheet for a new row.
+
+**If the site shows "Thanks!" but no row appears**: that success message
+does *not* mean the write succeeded — it only means the request left the
+browser. To see the real error:
+
+1. In the Apps Script editor, click the clock icon (**Executions**) in the
+   left sidebar.
+2. Find the most recent `doPost` execution and open it — it shows the
+   actual error (permission issue, wrong sheet name, bad payload, etc.)
+   instead of the silence the browser sees.
+3. Double-check the tab name in the Sheet is exactly `MMX Enquiry`
+   (case-sensitive) — the script now creates that tab if it's missing, but
+   if your data is landing on a *different* tab, this is usually why.
+4. Remember every edit to `Code.gs` needs a **new deployment version**
+   (see above) — pasting the change into the editor alone does not update
+   the live `/exec` URL.
