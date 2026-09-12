@@ -14,6 +14,8 @@
 // Area / Location*, Status, How did you hear about us? — no timestamp
 // column, and "Status" is left blank for staff to fill in manually
 // (e.g. New / Contacted / Enrolled) once they follow up.
+const SHEET_ID = '1-QbosuhbXRj9yghxWZwCI2L9WISkuSPB1MiZASQbiWo'
+
 const HEADERS = [
   'Student Name',
   'Age*',
@@ -27,7 +29,11 @@ const HEADERS = [
 ]
 
 function doPost(e) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet()
+  // SpreadsheetApp.getActiveSpreadsheet() returns null when this script runs
+  // as a Web App hit from an external POST (there's no "active" spreadsheet
+  // in that execution context) — it only works when the Sheet itself is open
+  // in a browser. Open by ID instead so this works for real form submissions.
+  const sheet = SpreadsheetApp.openById(SHEET_ID).getActiveSheet()
 
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(HEADERS)
